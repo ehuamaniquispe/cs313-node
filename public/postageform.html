@@ -9,9 +9,9 @@
 <body>
     <h1> postage calculator</h1>
     <form method ="GET" action="calculate">
-    <!-- <form method ="GET" action="math_service"> -->
+   
         weight:
-        <input type="text" id="operand1" name="operand1">
+        <input type="text" id="weight" name="weight">
         Types of mail:
         <select name="mail" id="mail">
             <option value="lettersStamped">letters(stamped)</option>
@@ -22,30 +22,11 @@
 
         <input type="submit" value="submit">
 
-        <!-- <input type="button" value="service" onclick="showResult()"> -->
+      
 
     </form>
-    <div id="result"></div>
-    
-    <script>
-        function showResult(){
-            let operand1 = document.getElementById('operand1').value;
-            let operation = document.getElementById('operation').value;
-            let operand2 = document.getElementById('operand2').value;
-
-            $.ajax(
-            {
-            url : 'http://localhost:5000/math_service',
-            type: "GET",
-            data : {operand1: operand1, operation:operation, operand2:operand2}
-            })
-            .done(function(data) {
-                console.log(data);
-                // let data = JSON.parse(data);
-                $("#result").html(data.result);
-            })
-        }
-    </script>
+   
+   
     
 </body>
 </html>
