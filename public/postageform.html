@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1> postage calculator</h1>
+    <form method ="GET" action="calculate">
+    <!-- <form method ="GET" action="math_service"> -->
+        weight:
+        <input type="text" id="operand1" name="operand1">
+        Types of mail:
+        <select name="mail" id="mail">
+            <option value="lettersStamped">letters(stamped)</option>
+            <option value="lettersMetered">letters(metered)</option>
+            <option value="largeEnvelope">large emvelopes(flats)</option>
+            <option value="firstClass">first-class package service-retail</option>
+          </select>
+
+        <input type="submit" value="submit">
+
+        <!-- <input type="button" value="service" onclick="showResult()"> -->
+
+    </form>
+    <div id="result"></div>
+    
+    <script>
+        function showResult(){
+            let operand1 = document.getElementById('operand1').value;
+            let operation = document.getElementById('operation').value;
+            let operand2 = document.getElementById('operand2').value;
+
+            $.ajax(
+            {
+            url : 'http://localhost:5000/math_service',
+            type: "GET",
+            data : {operand1: operand1, operation:operation, operand2:operand2}
+            })
+            .done(function(data) {
+                console.log(data);
+                // let data = JSON.parse(data);
+                $("#result").html(data.result);
+            })
+        }
+    </script>
+    
+</body>
+</html>

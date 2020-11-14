@@ -62,6 +62,16 @@ app.get('/math_service', function(req,res){
 
 
 
+/***************************************
+ * week9: postage
+ ***************************************/
+
+ app.get('/postage',(req,res)=>{
+   res.sendFile(__dirname + '/public/postageform.html');
+ })
+
+
+
 app.listen(PORT, function(){//chnage made aja
   console.log('Listening at port 5000')
 });
