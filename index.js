@@ -75,12 +75,17 @@ app.get('/math_service', function(req,res){
   let weight = req.query.weight;
   let mail = req.query.mail;
 
-  var lettersStamped = {1:0.55,2:0.70,3:0.85,3.5:1};
+  var lettersStamped = [
+  {w:"1"  ,p:0.55},
+  {w:"2"  ,p:0.70},
+  {w:"3"  ,p:0.85},
+  {w:"3.5",p:1}
+  ];
   var lettersMetered = {1:0.50,2:0.65,3:0.80,3.5:0.95};
   var largeEnvelopesFlats = {1:1,2:1.2,3:1.4,4:1.6,5:1.8,6:2,7:2.2,8:2.4,9:2.6,10:2.8,11:3,12:3.2,13:3.4};
   var firstClassPackageServiceRetail = {1:3.8,2:3.8,3:3.8,4:3.8,5:4.6,6:4.6,7:4.6,8:4.6,9:5.3,10:5.3,11:5.3,12:5.3,13:5.9 };
 
-  var price = lettersStamped.find(x=>x==weight);
+  var price = lettersStamped.find(x=>x.w==weight).p;
   console.log(prince);
 
  })
