@@ -70,14 +70,76 @@ app.get('/math_service', function(req,res){
    res.sendFile(__dirname + '/public/postageform.html');
  })
 
- app.get('/calculate',function(req,res){
+ app.get('/calculate',(req,res)=>{
 
+  let weight = req.query.weight;
+  let mail = req.query.mail;
+
+  console.log(weight);
+  console.log(mail);
+
+  var mailArray = [
+    "lettersStamped",
+    "lettersMetered",
+    "largeEnvelope",
+    "firstClass"
+  ]
+  
+  var postage = [
+  {n:"lettersStamped",w:"1"  ,p:0.55},
+  {n:"lettersStamped",w:"2"  ,p:0.70},
+  {n:"lettersStamped",w:"3"  ,p:0.85},
+  {n:"lettersStamped",w:"3.5",p:1},
+    {n:"lettersMetered",w:"1",p:0.50},
+    {n:"lettersMetered",w:"2",p:0.65},
+    {n:"lettersMetered",w:"3",p:0.80},
+    {n:"lettersMetered",w:"3.5",p:0.95},
+    {n:"largeEnvelope",w:"1",p:1},
+    {n:"largeEnvelope",w:"2",p:1.2},
+    {n:"largeEnvelope",w:"3",p:1.4},
+    {n:"largeEnvelope",w:"4",p:1.6},
+    {n:"largeEnvelope",w:"5",p:1.8},
+    {n:"largeEnvelope",w:"6",p:2},
+    {n:"largeEnvelope",w:"7",p:2.2},
+    {n:"largeEnvelope",w:"8",p:2.4},
+    {n:"largeEnvelope",w:"9",p:2.6},
+    {n:"largeEnvelope",w:"10",p:2.8},
+    {n:"largeEnvelope",w:"11",p:3},
+    {n:"largeEnvelope",w:"12",p:3.2},
+    {n:"largeEnvelope",w:"13",p:3.4},
+    {n:"firstClass",w:"1",p:3.8},
+    {n:"firstClass",w:"2",p:3.8},
+    {n:"firstClass",w:"3",p:3.8},
+    {n:"firstClass",w:"4",p:3.8},
+    {n:"firstClass",w:"5",p:4.6},
+    {n:"firstClass",w:"6",p:4.6},
+    {n:"firstClass",w:"7",p:4.6},
+    {n:"firstClass",w:"8",p:4.6},
+    {n:"firstClass",w:"9",p:5.3},
+    {n:"firstClass",w:"10",p:5.3},
+    {n:"firstClass",w:"11",p:5.3},
+    {n:"firstClass",w:"12",p:5.3},
+    {n:"firstClass",w:"13",p:5.9} 
+  ];
  
-  console.log("mail");
 
+  var mailChosen = mailArray.find(x=>x==mail);
+ 
+  var price = postage.find(x=>x.n==mailChosen&x.w==weight);
+
+  if(price == undefined){
+
+    let message = "weight not found, try with another weight"
+    res.render('postageCalculator1',{message:message});
+  }else{
+    console.log(price.p);
+    res.render('postageCalculator',{weight:price.w,mail:price.n,price:price.p});
+  }
 
 
  })
+
+
 
 
 app.listen(PORT, function(){//chnage made aja
