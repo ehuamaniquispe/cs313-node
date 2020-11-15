@@ -72,11 +72,14 @@ app.get('/math_service', function(req,res){
 
  app.get('/calculate',function(req,res){
 
-  let weight = req.query.weight;
-  let mail = req.query.mail;
+  // let weight = req.query.weight;
+  // let mail = req.query.mail;
 
-  console.log(weight);
-  console.log(mail);
+  // console.log(weight);
+  // console.log(mail);
+  console.log("mail");
+
+
 //
   // var lettersStamped = [
   // {w:"1"  ,p:0.55},
