@@ -77,7 +77,7 @@ app.get('/math_service', function(req,res){
 
   console.log(weight);
   console.log(mail);
-
+//
   // var lettersStamped = [
   // {w:"1"  ,p:0.55},
   // {w:"2"  ,p:0.70},
