@@ -70,7 +70,7 @@ app.get('/math_service', function(req,res){
    res.sendFile(__dirname + '/public/postageform.html');
  })
 
- app.get('/calculate',(req,res)=>{
+ app.get('/calculate',function(req,res){
 
   let weight = req.query.weight;
   let mail = req.query.mail;
