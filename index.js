@@ -1,7 +1,27 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT || 5000;
+const connectionString = process.env.DATABASE_URL||"postgres://zkzyovaopofvbo:ff7c115mEWP1mAChLE9Vbh2mnxVr14Fmc9iibb39df77f1db4214dcfdf0463c5b@ec2-18-210-90-1.compute-1.amazonaws.com:5432/dcu8s62fve8ijt?ssl=true";
+const { Pool } = require('pg');
+const pool = new Pool({connectionString: connectionString});
 
+
+
+var sql = "SELECT * FROM example";
+
+pool.query(sql, function(err, result) {
+    // If an error occurred...
+    if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+    }
+
+    // Log this to the console for debugging purposes.
+    console.log("Back from DB with result:");
+    console.log(result.rows);
+
+
+});     
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))
 //   .set('views', path.join(__dirname, 'views'))
