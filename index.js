@@ -4,6 +4,34 @@ const PORT = process.env.PORT || 5000;
 const connectionString = process.env.DATABASE_URL||"postgres://zkzyovaopofvbo:ff7c115mEWP1mAChLE9Vbh2mnxVr14Fmc9iibb39df77f1db4214dcfdf0463c5b@ec2-18-210-90-1.compute-1.amazonaws.com:5432/dcu8s62fve8ijt?ssl=true";
 const { Pool } = require('pg');
 const pool = new Pool({connectionString: connectionString});
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
+
+
+var app = express();
+
+app.set('view engine', 'ejs');
+
+
+
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM example');
+    const results = { 'results': (result) ? result.rows : null};
+    // res.render('pages/db', results );
+    res.send(JSON.stringify(result));
+
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 
 
 
@@ -19,7 +47,7 @@ pool.query(sql, function(err, result) {
     // Log this to the console for debugging purposes.
     console.log("Back from DB with result:");
     console.log(result.rows);
-    res.send(JSON.stringify(result));
+    // res.send(JSON.stringify(result));
 
 
 });     
@@ -29,9 +57,7 @@ pool.query(sql, function(err, result) {
 //   .set('view engine', 'ejs')
 //   .get('/', (req, res) => res.render('pages/index'))
 //   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-var app = express();
 
-app.set('view engine', 'ejs');
 
 //app.set('json spaces', 40);// stretch  challenge
 
