@@ -202,3 +202,13 @@ app.listen(PORT, function(){//chnage made aja
   app.get('/project', (req,res)=>{
     res.sendFile(__dirname + '/public/login_project.html');
   });
+
+  app.get('/verify_login',(req,res)=>{
+
+    let userName = req.query.userName;
+    let password = req.query.password;
+
+    console.log(userName);
+    console.log(password);
+
+  });
