@@ -187,19 +187,18 @@ app.get('/db', async (req, res) => {
     let password = req.query.password;
 
     try{
-      // const client = await pool.connect();
-      // const query = "SELECT familymember_username FROM familymember WHERE familymember_username ="+userName;
-      // const result = await client.query(query);
-      // const results = { 'results': (result) ? result.rows : null};
-      // res.render('pages/db', results );
-      //res.send(JSON.stringify(result));
       
-
-      // client.release();
       const q = "SELECT familymember_username FROM familymember WHERE familymember_username = $1";
-const values = [userName];
+      const values = [userName];
       const result = await pool.query(q,values);
       res.send(JSON.stringify(result.rows));
+
+      if(empty(result.rows)){
+        res.send("User name not found");
+      }
+      else {
+        res.send("Welcome"+ result.rows.familymember_name);
+      }
 
 
       //res.render('main-project',{results:JSON.stringify(result), userName:userName, password:password});
