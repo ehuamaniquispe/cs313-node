@@ -3,7 +3,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 require('dotenv').config();
 const connectionString = process.env.DATABASE_URL;
-// const connectionString = process.env.DATABASE_URL||'postgres://zkzyovaopofvbo:ff7c115mEWP1mAChLE9Vbh2mnxVr14Fmc9iibb39df77f1db4214dcfdf0463c5b@ec2-18-210-90-1.compute-1.amazonaws.com:5432/dcu8s62fve8ijt?ssl=true';
+
 //declaring a connection to db
 const { Pool } = require('pg');
 const pool = new Pool({connectionString: connectionString});
