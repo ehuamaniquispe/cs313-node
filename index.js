@@ -197,7 +197,7 @@ app.get('/db', async (req, res) => {
         res.send("User name not found");
       }
       else {
-        res.send("Welcome"+ result.rows[familymember_name]);
+        res.send("Welcome"+ JSON.stringify(result.rows.familymember_name));
       }
 
 
