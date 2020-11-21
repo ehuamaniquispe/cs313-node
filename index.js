@@ -191,7 +191,7 @@ app.get('/db', async (req, res) => {
       const result = await client.query('SELECT * FROM example');
       const results = { 'results': (result) ? result.rows : null};
       // res.render('pages/db', results );
-      res.send(JSON.stringify(result));
+      //res.send(JSON.stringify(result));
 
       client.release();
 
@@ -203,8 +203,7 @@ app.get('/db', async (req, res) => {
     }
 
 
-    res.send(userName);
-    res.send(password);
+
     console.log(userName);
     console.log(password);
 
