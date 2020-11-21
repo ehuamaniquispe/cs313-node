@@ -181,10 +181,26 @@ app.get('/db', async (req, res) => {
     res.sendFile(__dirname + '/public/login_project.html');
   });
 
-  app.get('/verify_login',(req,res)=>{
+  app.get('/verify_login',async (req,res)=>{
 
     let userName = req.query.userName;
     let password = req.query.password;
+
+    try{
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM example');
+      const results = { 'results': (result) ? result.rows : null};
+      // res.render('pages/db', results );
+      res.send(JSON.stringify(result));
+
+      client.release();
+
+    }
+    catch(err){
+      console.error(err);
+      res.send("Error " + err);
+    }
+
 
     res.send(userName);
     res.send(password);
