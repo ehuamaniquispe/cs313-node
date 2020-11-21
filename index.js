@@ -198,7 +198,7 @@ app.get('/db', async (req, res) => {
       client.release();
 
 
-      res.render('main-project',{results:JSON.stringify(results), userName:userName, password:password});
+      res.render('main-project',{results:JSON.stringify(result), userName:userName, password:password});
     }
     catch(err){
       console.error(err);
