@@ -159,6 +159,23 @@ app.listen(PORT, function(){//chnage made aja
 /*******************************************************
  * project 
  ******************************************************/
+//trying db connection
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM example');
+    const results = { 'results': (result) ? result.rows : null};
+    // res.render('pages/db', results );
+    res.send(JSON.stringify(result));
+
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
+
+
 
   app.get('/project', (req,res)=>{
     res.sendFile(__dirname + '/public/login_project.html');
@@ -172,19 +189,6 @@ app.listen(PORT, function(){//chnage made aja
     console.log(userName);
     console.log(password);
 
-    app.get('/db', async (req, res) => {
-      try {
-        const client = await pool.connect();
-        const result = await client.query('SELECT * FROM example');
-        const results = { 'results': (result) ? result.rows : null};
-        // res.render('pages/db', results );
-        res.send(JSON.stringify(result));
     
-        client.release();
-      } catch (err) {
-        console.error(err);
-        res.send("Error " + err);
-      }
-    })
     
   });
