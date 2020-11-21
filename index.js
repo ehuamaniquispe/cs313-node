@@ -197,8 +197,8 @@ app.get('/db', async (req, res) => {
 
       // client.release();
       const q = "SELECT familymember_username FROM familymember WHERE familymember_username = $1";
-
-      const result = await pool.query(q,userName);
+const values = [userName];
+      const result = await pool.query(q,values);
       res.send(JSON.stringify(result.rows));
 
 
