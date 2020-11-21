@@ -191,7 +191,7 @@ app.get('/db', async (req, res) => {
       const q = "SELECT familymember_username FROM familymember WHERE familymember_username = $1";
       const values = [userName];
       const result = await pool.query(q,values);
-      res.send(JSON.stringify(result.rows));
+      //res.send(JSON.stringify(result.rows));
 
       if(empty(result.rows)){
         res.send("User name not found");
