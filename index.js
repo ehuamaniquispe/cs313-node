@@ -163,7 +163,7 @@ app.listen(PORT, function(){//chnage made aja
 app.get('/db', async (req, res) => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM example');
+    const result = await client.query('SELECT * FROM familymember');
     const results = { 'results': (result) ? result.rows : null};
     // res.render('pages/db', results );
     res.send(JSON.stringify(result));
