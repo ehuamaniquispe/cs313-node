@@ -159,28 +159,13 @@ app.listen(PORT, function(){//chnage made aja
 /*******************************************************
  * project 
  ******************************************************/
-//trying db connection
-app.get('/db', async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM familymember');
-    const results = { 'results': (result) ? result.rows : null};
-    // res.render('pages/db', results );
-    res.send(JSON.stringify(result));
 
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-})
-
-
-
+//showing the login page
   app.get('/project', (req,res)=>{
     res.sendFile(__dirname + '/public/login_project.html');
   });
 
+  //verifying username and pass
   app.get('/verify_login',async (req,res)=>{
 
     let userName = req.query.userName;
@@ -198,7 +183,7 @@ app.get('/db', async (req, res) => {
       }
       else {
         // res.send("Welcome"+ JSON.stringify(result.rows.familymember_name));
-        res.send("Welcome");
+        res.send("Welcome!");
       }
 
 
