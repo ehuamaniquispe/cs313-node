@@ -25,5 +25,11 @@
     .jumbotron .lang-logo img {
       max-width: 100%; } */
 
+body{
+  text-align: center;
 
-      
+}
+form{
+  display:inline-block;
+}
+
