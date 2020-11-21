@@ -195,6 +195,7 @@ app.get('/db', async (req, res) => {
 
       client.release();
 
+      res.render('main-project',{results:results, userName:userName, password:password});
     }
     catch(err){
       console.error(err);
@@ -206,6 +207,7 @@ app.get('/db', async (req, res) => {
     res.send(password);
     console.log(userName);
     console.log(password);
+
 
     
     
