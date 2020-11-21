@@ -186,6 +186,8 @@ app.get('/db', async (req, res) => {
     let userName = req.query.userName;
     let password = req.query.password;
 
+    res.send(userName);
+    res.send(password);
     console.log(userName);
     console.log(password);
 
