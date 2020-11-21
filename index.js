@@ -188,14 +188,17 @@ app.get('/db', async (req, res) => {
 
     try{
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM example');
+      const query = "SELECT familymember_username FROM familymember WHERE familymember_username ="+userName;
+      const result = await client.query(query);
       const results = { 'results': (result) ? result.rows : null};
       // res.render('pages/db', results );
       //res.send(JSON.stringify(result));
+      
 
       client.release();
 
-      res.render('main-project',{results:results, userName:userName, password:password});
+
+      res.render('main-project',{results:JSON.stringify(results), userName:userName, password:password});
     }
     catch(err){
       console.error(err);
