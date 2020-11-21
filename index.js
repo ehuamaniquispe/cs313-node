@@ -194,10 +194,11 @@ app.get('/db', async (req, res) => {
       //res.send(JSON.stringify(result.rows));
 
       if(result.rows.length == 0){
-        res.send("User name not found");
+        res.send("User name or password not found");
       }
       else {
-        res.send("Welcome"+ JSON.stringify(result.rows.familymember_name));
+        // res.send("Welcome"+ JSON.stringify(result.rows.familymember_name));
+        res.send("Welcome");
       }
 
 
