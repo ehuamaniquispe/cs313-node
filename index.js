@@ -193,7 +193,7 @@ app.get('/db', async (req, res) => {
       const result = await pool.query(q,values);
       //res.send(JSON.stringify(result.rows));
 
-      if(typeof result.rows.familymember_name == 'undefined'){
+      if(result.rows.length == 0){
         res.send("User name not found");
       }
       else {
